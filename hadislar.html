@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramazon Hadislari</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Umumiy sahifa uslubi */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+        }
+
+        /* Navbar uslubi */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ffcc00;
+        }
+
+        /* Asosiy container */
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* Hadis kartochkalari */
+        .hadis-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            margin: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .hadis-box:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Tugma uslubi */
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #ffcc00;
+            color: #1e3c72;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #ffdb4d;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <a href="index.html">🏠 Bosh sahifa</a>
+    <a href="taqvim.html">📅 Ramazon taqvimi</a>
+    <a href="duolar.html">📖 Duolar</a>
+    <a href="hadislar.html">📜 Hadislar</a>
+</div>
+
+<!-- Hadislar bo‘limi -->
+<div class="container">
+    <h1>📜 Ramazon Haqida Hadislar</h1>
+
+    <div class="hadis-box">
+        🔹 "Kim Ramazon ro‘zasini iymon bilan va mukofot umidida tutsa,
+        uning oldingi gunohlari kechiriladi."
+        <br> <strong>(Buxoriy, Muslim)</strong>
+    </div>
+
+    <div class="hadis-box">
+        🔹 "Ro‘za qalqon bo‘lib, kishini do‘zaxdan saqlaydi."
+        <br> <strong>(Tirmiziy)</strong>
+    </div>
+
+    <div class="hadis-box">
+        🔹 "Ramazon oyida osmon eshikliklari ochiladi va do‘zax eshiklari yopiladi."
+        <br> <strong>(Buxoriy, Muslim)</strong>
+    </div>
+
+    <div class="hadis-box">
+        🔹 "Ro‘za tuting, toki sog‘lom bo‘ling!"
+        <br> <strong>(Ibn Suniy)</strong>
+    </div>
+
+    <a href="index.html" class="btn">🔙 Bosh sahifaga</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramazon Duolari | Ilohiy Ramazon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0f2027;
+            --secondary: #203a43;
+            --tertiary: #2c5364;
+            --accent: #ffcc00;
+            --text: #ffffff;
+            --light-bg: rgba(255, 255, 255, 0.15);
+            --dark-shadow: rgba(0, 0, 0, 0.3);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary), var(--tertiary));
+            color: var(--text);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Dekorativ elementlar */
+        .moon {
+            position: fixed;
+            top: 8%;
+            right: 10%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--accent), #ffea80);
+            border-radius: 50%;
+            box-shadow: 0 0 50px rgba(255, 204, 0, 0.8);
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+
+
+        /* Navigatsiya paneli */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 18px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 20px var(--dark-shadow);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .navbar a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navbar a:hover, .navbar a.active {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
+        }
+
+        /* Asosiy kontent */
+        .container {
+            max-width: 850px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 120px auto 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--accent);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            display: inline-block;
+            font-family: 'Amiri', serif;
+        }
+
+        h1:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
+        /* Duo qutilari */
+        .duo-box {
+            background: var(--light-bg);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--dark-shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border-left: 4px solid var(--accent);
+        }
+
+        .duo-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .duo-box:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: 0.6s;
+        }
+
+        .duo-box:hover:before {
+            transform: translateX(100%);
+        }
+
+        .duo-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .duo-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-family: 'Amiri', serif;
+            text-align: center;
+            direction: rtl;
+        }
+
+        .translation {
+            font-size: 1rem;
+            font-style: italic;
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: left;
+        }
+
+        /* Tugmalar */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            padding: 12px 30px;
+            background: var(--accent);
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            gap: 10px;
+        }
+
+        .btn:hover {
+            background: #ffe066;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 204, 0, 0.5);
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        /* Yuqoriga qaytish tugmasi */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: var(--primary);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #backToTop:hover {
+            background: #ffe066;
+            transform: scale(1.1) rotate(360deg);
+        }
+
+        /* Audio pleer */
+        .audio-player {
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animatsiyalar */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        /* Media so'rovlar */
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+
+            .moon {
+                width: 60px;
+                height: 60px;
+                top: 6%;
+                right: 5%;
+            }
+
+            .navbar {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 12px;
+            }
+
+            .navbar a {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+            }
+
+            .container {
+                max-width: 95%;
+                padding: 25px 15px;
+                margin: 100px auto 30px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .duo-box {
+                padding: 20px 15px;
+            }
+
+            .duo-title {
+                font-size: 1.3rem;
+            }
+
+            .duo-text {
+                font-size: 1.1rem;
+            }
+
+            #backToTop {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                max-width: 90%;
+                padding: 30px 25px;
+            }
+
+            .moon {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Dekorativ elementlar -->
+<div class="moon"></div>
+<div class="stars" id="stars"></div>
+
+<!-- Navigatsiya paneli -->
+<nav class="navbar" id="navbar">
+    <a href="index.html"><i class="fas fa-home"></i> Bosh sahifa</a>
+    <a href="taqvim.html"><i class="fas fa-calendar-alt"></i> Taqvim</a>
+    <a href="duolar.html" class="active"><i class="fas fa-pray"></i> Duolar</a>
+    <a href="hadislar.html"><i class="fas fa-book-quran"></i> Hadislar</a>
+    <a href="sadaqa-zakot.html"><i class="fas fa-hand-holding-heart"></i> Sadaqa</a>
+</nav>
+
+<!-- Asosiy kontent -->
+<main class="container">
+    <h1><i class="fas fa-praying-hands"></i> Ramazon Duolari</h1>
+
+    <section class="duo-box">
+        <h2 class="duo-title"><i class="fas fa-moon"></i> Saharlik Duosi</h2>
+        <p class="duo-text">نَوَيْتُ أَنْ أَصُومَ صَوْمَ شَهْرِ رَمَضَانَ مِنَ الْفَجْرِ إِلَى الْمَغْرِبِ خَالِصًا لِلَّهِ تَعَالَى</p>
+        <p class="translation">"Alloh rizoligi uchun ertangi Ramazon oyining ro'zasini subhdan to kun botguncha tutishni niyat qildim."</p>
+
+        <audio id="saharlik-audio" controls class="audio-player">
+            <source src="saharlik-duo.mp3" type="audio/mpeg">
+            Sizning brauzeringiz audio elementni qo'llab-quvvatlamaydi.
+        </audio>
+
+        <button class="btn" onclick="playAudio('saharlik-audio')">
+            <i class="fas fa-play"></i> Tinglash
+        </button>
+    </section>
+
+    <section class="duo-box">
+        <h2 class="duo-title"><i class="fas fa-sun"></i> Iftorlik Duosi</h2>
+        <p class="duo-text">اللَّهُمَّ لَكَ صُمْتُ وَعَلَى رِزْقِكَ أَفْطَرْتُ وَعَلَيْكَ تَوَكَّلْتُ</p>
+        <p class="translation">"Ey Alloh, Sen uchun ro'za tutdim va Sening rizqing bilan iftor qildim. Senga tavakkal qildim."</p>
+
+        <audio id="iftorlik-audio" controls class="audio-player">
+            <source src="iftorlik-duo.mp3" type="audio/mpeg">
+            Sizning brauzeringiz audio elementni qo'llab-quvvatlamaydi.
+        </audio>
+
+        <button class="btn" onclick="playAudio('iftorlik-audio')">
+            <i class="fas fa-play"></i> Tinglash
+        </button>
+    </section>
+
+    <section class="duo-box">
+        <h2 class="duo-title"><i class="fas fa-star"></i> Qur'ondan Duo</h2>
+        <p class="duo-text">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</p>
+        <p class="translation">"Ey Robbimiz, bizga dunyoda ham, oxiratda ham yaxshilik ato qil va bizni do'zax azobidan saqla." (Baqara, 201)</p>
+
+        <audio id="quron-duo-audio" controls class="audio-player">
+            <source src="quron-duo.mp3" type="audio/mpeg">
+            Sizning brauzeringiz audio elementni qo'llab-quvvatlamaydi.
+        </audio>
+
+        <button class="btn" onclick="playAudio('quron-duo-audio')">
+            <i class="fas fa-play"></i> Tinglash
+        </button>
+    </section>
+
+    <section class="duo-box">
+        <h2 class="duo-title"><i class="fas fa-mosque"></i> Laylatul Qadr Duosi</h2>
+        <p class="duo-text">اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي</p>
+        <p class="translation">"Ey Alloh, Sen afv etuvchisan va afvni yaxshi ko'rasan, mening gunohlarimni ham afv et."</p>
+
+        <audio id="qadr-duo-audio" controls class="audio-player">
+            <source src="qadr-duo.mp3" type="audio/mpeg">
+            Sizning brauzeringiz audio elementni qo'llab-quvvatlamaydi.
+        </audio>
+
+        <button class="btn" onclick="playAudio('qadr-duo-audio')">
+            <i class="fas fa-play"></i> Tinglash
+        </button>
+    </section>
+
+    <div class="btn-group">
+        <a href="index.html" class="btn"><i class="fas fa-home"></i> Bosh sahifa</a>
+        <a href="hadislar.html" class="btn"><i class="fas fa-book-quran"></i> Hadislar</a>
+        <a href="taqvim.html" class="btn"><i class="fas fa-calendar-alt"></i> Ramazon taqvimi</a>
+    </div>
+</main>
+
+<!-- Yuqoriga qaytish tugmasi -->
+<button id="backToTop" title="Yuqoriga qaytish"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+    // Yulduzlar generatsiyasi
+    function createStars() {
+        const starsContainer = document.getElementById('stars');
+        const starCount = 100;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+
+            // Tasodifiy o'lcham va pozitsiya
+            const size = Math.random() * 3;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            const duration = 2 + Math.random() * 8;
+            const opacity = 0.2 + Math.random() * 0.8;
+            const delay = Math.random() * 5;
+
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${posX}%`;
+            star.style.top = `${posY}%`;
+            star.style.setProperty('--duration', `${duration}s`);
+            star.style.setProperty('--opacity', opacity);
+            star.style.animationDelay = `${delay}s`;
+
+            starsContainer.appendChild(star);
+        }
+    }
+
+    // Audio pleerni boshqarish
+    function playAudio(id) {
+        const audio = document.getElementById(id);
+
+        // Barcha audiolarni to'xtatish
+        document.querySelectorAll('audio').forEach(a => {
+            if (a.id !== id) a.pause();
+        });
+
+        if (audio.paused) {
+            audio.play();
+        } else {
+            audio.pause();
+        }
+    }
+
+    // Yuqoriga qaytish tugmasi
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    // Navbarni scroll qilganda o'zgartirish
+    function handleScroll() {
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+
+        if (window.scrollY > 300) {
+            backToTop.style.display = 'flex';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    }
+
+    // DOM yuklanganida
+    document.addEventListener('DOMContentLoaded', function() {
+        createStars();
+        document.getElementById('backToTop').addEventListener('click', scrollToTop);
+        window.addEventListener('scroll', handleScroll);
+    });
+</script>
+
+</body>
+</html>

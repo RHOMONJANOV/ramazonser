@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zakot Hisoblash</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c786c;
+            --secondary: #ffcc00;
+            --dark: #004445;
+            --light: #f8f1f1;
+            --accent: #ff7e5f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--dark), #001a1a);
+            color: var(--light);
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(0, 68, 69, 0.9);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar a:hover, .navbar a.active {
+            background: rgba(255, 204, 0, 0.2);
+            color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .navbar a i {
+            font-size: 18px;
+        }
+
+        /* Main container */
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 40px;
+            background: rgba(0, 68, 69, 0.85);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.8s ease;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .info-text {
+            font-size: 1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            background: rgba(44, 120, 108, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        /* Input styles */
+        .input-group {
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .input-box {
+            width: 100%;
+            padding: 15px 20px;
+            margin: 10px 0;
+            border-radius: 50px;
+            border: none;
+            font-size: 1rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+            outline: none;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-box:focus {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.3);
+        }
+
+        .input-box::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .currency-symbol {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        /* Button styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px;
+            margin: 20px 0;
+            background: var(--secondary);
+            color: var(--dark);
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+        }
+
+        .btn:hover {
+            background: #ffdb4d;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4);
+        }
+
+        .btn i {
+            font-size: 1.2rem;
+        }
+
+        /* Result box */
+        .result-box {
+            margin: 30px 0 10px;
+            padding: 20px;
+            background: rgba(44, 120, 108, 0.5);
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary);
+            border-left: 5px solid var(--secondary);
+            animation: fadeIn 0.5s ease;
+            display: none;
+        }
+
+        .result-box i {
+            margin-right: 10px;
+        }
+
+        /* Additional info */
+        .additional-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            text-align: left;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .additional-info h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+                margin: 30px 15px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .navbar a {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 15px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .info-text {
+                font-size: 0.9rem;
+                padding: 12px;
+            }
+
+            .result-box {
+                font-size: 1.1rem;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <a href="index.html"><i class="fas fa-home"></i> Bosh sahifa</a>
+    <a href="taqvim.html"><i class="fas fa-calendar-alt"></i> Ramazon taqvimi</a>
+    <a href="duolar.html"><i class="fas fa-book-quran"></i> Duolar</a>
+    <a href="hadislar.html"><i class="fas fa-book"></i> Hadislar</a>
+    <a href="zakot-hisoblash.html" class="active"><i class="fas fa-calculator"></i> Zakot Hisoblash</a>
+</div>
+
+<!-- Main content -->
+<div class="container">
+    <h1>
+        <i class="fas fa-hand-holding-usd"></i>
+        Zakot Hisoblash
+    </h1>
+
+    <p class="info-text">
+        Zakot - Islomning besh ustunidan biri bo'lib, nisob miqdoriga yetgan mol-mulkning 2.5% ni (1/40 qismini) taqdir qilgan kambag'allarga berishdir.
+    </p>
+
+    <div class="input-group">
+        <span class="currency-symbol">so'm</span>
+        <input type="number" id="capital" class="input-box" placeholder="Jami mol-mulkingizni kiriting" min="0">
+    </div>
+
+    <button class="btn" onclick="calculateZakat()">
+        <i class="fas fa-calculator"></i> Zakotni hisoblash
+    </button>
+
+    <div class="result-box" id="zakatResult">
+        <i class="fas fa-coins"></i>
+        <span id="resultText"></span>
+    </div>
+
+    <div class="additional-info">
+        <h3><i class="fas fa-info-circle"></i> Zakot haqida</h3>
+        <p>Zakot to'lash uchun mol-mulkingiz (naqd pul, oltin, kumush, savdo mollari) 1 yil davomida nisob miqdoridan (85 gram oltin qiymatidan) ortiq bo'lishi kerak.</p>
+        <p>Zakotni Ramazon oyida to'lash afzal hisoblanadi, ammo yilning istalgan vaqtida to'lash mumkin.</p>
+    </div>
+</div>
+
+<script>
+    function calculateZakat() {
+        const capitalInput = document.getElementById("capital");
+        const capital = parseFloat(capitalInput.value);
+        const resultBox = document.getElementById("zakatResult");
+        const resultText = document.getElementById("resultText");
+
+        // Input validation
+        if (isNaN(capital) || capital < 0) {
+            resultText.innerHTML = "Iltimos, to'g'ri miqdorni kiriting!";
+            resultBox.style.display = "block";
+            resultBox.style.color = "#ff6b6b";
+            capitalInput.focus();
+            return;
+        }
+
+        if (capital === 0) {
+            resultText.innerHTML = "Sizda zakot to'lash majburiyati yo'q";
+            resultBox.style.display = "block";
+            resultBox.style.color = "#ffcc00";
+            return;
+        }
+
+        // Calculate zakat (2.5%)
+        const zakat = capital * 0.025;
+
+        // Format number with thousand separators
+        const formattedCapital = capital.toLocaleString('uz-UZ');
+        const formattedZakat = zakat.toLocaleString('uz-UZ');
+
+        // Display result
+        resultText.innerHTML = `
+            <span style="font-size: 0.9em; display: block; margin-bottom: 5px; color: #ffffff;">
+                Jami mol-mulkingiz: <b>${formattedCapital}</b> so'm
+            </span>
+            Siz to'lashingiz kerak bo'lgan zakot: <b>${formattedZakat}</b> so'm
+            <span style="font-size: 0.8em; display: block; margin-top: 8px; color: #a5d8ff;">
+                (${capital} × 2.5% = ${zakat.toFixed(2)})
+            </span>
+        `;
+
+        resultBox.style.display = "block";
+        resultBox.style.color = "#ffcc00";
+
+        // Save to localStorage
+        localStorage.setItem('lastZakatCalculation', JSON.stringify({
+            amount: capital,
+            date: new Date().toLocaleDateString(),
+            zakat: zakat
+        }));
+    }
+
+    // Load last calculation if exists
+    window.addEventListener('DOMContentLoaded', () => {
+        const lastCalc = localStorage.getItem('lastZakatCalculation');
+        if (lastCalc) {
+            const { amount } = JSON.parse(lastCalc);
+            document.getElementById("capital").value = amount;
+        }
+    });
+
+    // Allow only numbers and backspace
+    document.getElementById("capital").addEventListener('keydown', function(e) {
+        if (!/[0-9]|Backspace|ArrowLeft|ArrowRight|Delete/.test(e.key) && e.key !== 'Tab') {
+            e.preventDefault();
+        }
+    });
+</script>
+
+</body>
+</html>

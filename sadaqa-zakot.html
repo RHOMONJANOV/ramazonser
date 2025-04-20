@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadaqa va Zakot - Ramazon Ilohiyati</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e3c72;
+            --secondary: #2a5298;
+            --accent: #ffcc00;
+            --text: #ffffff;
+            --light-bg: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar a:hover, .navbar a.active {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--light-bg);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--accent);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+            display: inline-block;
+        }
+
+        h1:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 25px 0 15px;
+            color: var(--accent);
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        li:before {
+            content: '•';
+            color: var(--accent);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -3px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: var(--accent);
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+            gap: 10px;
+        }
+
+        .btn:hover {
+            background: #ffe066;
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(255, 204, 0, 0.4);
+        }
+
+        .quote {
+            font-style: italic;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+
+        .benefit-card {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .benefit-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-right: 15px;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .container {
+                margin: 20px 15px;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <a href="index.html"><i class="fas fa-home"></i> Bosh sahifa</a>
+    <a href="taqvim.html"><i class="fas fa-calendar-alt"></i> Ramazon taqvimi</a>
+    <a href="duolar.html"><i class="fas fa-book-open"></i> Duolar</a>
+    <a href="hadislar.html"><i class="fas fa-quote-right"></i> Hadislar</a>
+    <a href="sadaqa-zakot.html" class="active"><i class="fas fa-hand-holding-heart"></i> Sadaqa va Zakot</a>
+</div>
+
+<!-- Asosiy qism -->
+<div class="container">
+    <h1><i class="fas fa-hand-holding-heart"></i> Sadaqa va Zakot</h1>
+
+    <div class="section">
+        <h2><i class="fas fa-star"></i> Sadaqaning Fazilati</h2>
+        <div class="quote">
+            "Sadaqa balolarni qaytaradi va umrni uzaytiradi." (Hadis)
+        </div>
+
+        <div class="benefit-card">
+            <div class="benefit-icon"><i class="fas fa-heart"></i></div>
+            <div>Sadaqa qilish orqali inson o'zining gunohlarini yuvadi, qalbini poklaydi</div>
+        </div>
+
+        <div class="benefit-card">
+            <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+            <div>Sadaqa ofat va musibatlardan himoya qiladi</div>
+        </div>
+
+        <div class="benefit-card">
+            <div class="benefit-icon"><i class="fas fa-scale-balanced"></i></div>
+            <div>Qiyomat kuni sadaqa beruvchilar uchun maxsus mukofotlar bo'ladi</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><i class="fas fa-question-circle"></i> Zakot Kimlarga Farz?</h2>
+        <p>Zakot berish Islomning besh asosiy ustunlaridan biridir. Agar musulmonning moli <strong>nisob</strong> miqdoriga yetsa va undan ortiq bo'lsa, unga zakot berish farz bo'ladi.</p>
+
+        <h3>Zakot beriladigan toifalar:</h3>
+        <ul>
+            <li><strong>Faqir va miskinlar</strong> - moddiy qiyinchilikdagi insonlar</li>
+            <li><strong>Yetimlar va bevalar</strong> - himoyasiz qolgan oilalar</li>
+            <li><strong>Yo'lovchilar</strong> - safarda qolgan va yordamga muhtoj bo'lganlar</li>
+            <li><strong>Qarzga botganlar</strong> - qarzini to'lay olmaydiganlar</li>
+            <li><strong>Alloh yo'lida ishlaydiganlar</strong> - diniy va ijtimoiy loyihalar</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2><i class="fas fa-calculator"></i> Zakot Hisoblash</h2>
+        <p>Zakot berish uchun asosiy shart - mol-mulkning <strong>nisob</strong> miqdoriga yetishi:</p>
+
+        <div class="benefit-card">
+            <div class="benefit-icon"><i class="fas fa-coins"></i></div>
+            <div><strong>85 gramm oltin</strong> yoki unga teng qiymatdagi mol-mulk</div>
+        </div>
+
+        <div class="benefit-card">
+            <div class="benefit-icon"><i class="fas fa-coins"></i></div>
+            <div><strong>595 gramm kumush</strong> yoki unga teng qiymatdagi mol-mulk</div>
+        </div>
+
+        <p>Zakot miqdori: Mol-mulkning <strong>2,5%</strong> qismi (har 40 dan 1 qismi).</p>
+
+        <a href="zakot-hisoblash.html" class="btn">
+            <i class="fas fa-calculator"></i> Zakot hisoblash kalkulyatori
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
